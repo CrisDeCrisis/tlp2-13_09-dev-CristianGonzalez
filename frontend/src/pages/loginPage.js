@@ -1,75 +1,33 @@
 export const loginPage = () => {
   const container = document.createElement("div");
-
-  container.classList.add(
-    "flex",
-    "items-center",
-    "justify-center",
-    "h-screen",
-    "bg-gray-200"
-  );
+  container.classList.add("flex", "items-center", "justify-center", "min-h-screen", "bg-gray-100");
 
   const form = document.createElement("form");
-
-  form.classList.add(
-    "flex",
-    "flex-col",
-    "w-1/6",
-    "gap-4",
-    "bg-white",
-    "p-8",
-    "rounded",
-    "shadow-md"
-  );
+  form.classList.add("bg-white", "p-6", "rounded-lg", "shadow-lg", "w-full", "max-w-sm");
 
   const title = document.createElement("h2");
-
-  title.classList.add("text-2xl", "font-bold", "mb-4");
+  title.classList.add("text-2xl", "font-bold", "mb-4", "text-center");
   title.textContent = "Login form";
 
   const usernameInput = document.createElement("input");
-
   usernameInput.type = "text";
   usernameInput.id = "username";
   usernameInput.name = "username";
   usernameInput.required = true;
-  usernameInput.classList.add(
-    "w-full",
-    "p-2",
-    "border",
-    "border-gray-300",
-    "rounded"
-  );
+  usernameInput.classList.add("w-full", "p-2", "border", "border-gray-300", "rounded", "mb-4");
   usernameInput.placeholder = "Username";
 
   const passwordInput = document.createElement("input");
-
   passwordInput.type = "password";
   passwordInput.id = "password";
   passwordInput.required = true;
   passwordInput.name = "password";
-  passwordInput.classList.add(
-    "w-full",
-    "p-2",
-    "border",
-    "border-gray-300",
-    "rounded"
-  );
+  passwordInput.classList.add("w-full", "p-2", "border", "border-gray-300", "rounded", "mb-4");
   passwordInput.placeholder = "Password";
 
   const submitButton = document.createElement("button");
-
   submitButton.type = "submit";
-  submitButton.classList.add(
-    "w-full",
-    "bg-blue-500",
-    "hover:bg-blue-700",
-    "text-white",
-    "font-bold",
-    "py-2",
-    "px-4",
-    "rounded"
-  );
+  submitButton.classList.add("w-full", "bg-blue-500", "text-white", "p-2", "rounded", "hover:bg-blue-600");
   submitButton.textContent = "Login";
 
   form.appendChild(title);
@@ -101,15 +59,11 @@ export const loginPage = () => {
       });
 
       if (!response.ok) {
+        const divError = document.createElement("div");
         divError.innerText = "Credenciales inválidas";
-        divError.classList.add(
-          "bg-danger",
-          "text-white",
-          "text-center",
-          "rounded",
-          "p-2",
-          "mt-3"
-        );
+        divError.classList.add("text-red-500", "mt-2");
+
+        form.appendChild(divError);
 
         setTimeout(() => {
           divError.hidden = true;
@@ -121,7 +75,7 @@ export const loginPage = () => {
       const data = await response.json();
       console.log(data);
       window.location.pathname = "/home";
-    } catch (error) {}
+    } catch (error) { }
   });
 
   container.appendChild(form);

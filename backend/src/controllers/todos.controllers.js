@@ -60,7 +60,7 @@ export const deleteTaskCtrl = (req, res) => {
 
     const task = database.todos.find((todo) => todo.id === Number(id));
 
-    if (todo.owner !== req.user.id) {
+    if (task.owner !== req.user.id) {
       return res.status(401).json({ message: "No tienes permisos para eliminar esta tarea" });
     }
 

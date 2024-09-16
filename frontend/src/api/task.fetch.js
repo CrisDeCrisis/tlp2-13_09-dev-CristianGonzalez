@@ -17,10 +17,10 @@ const fetchData = async (endpoint, options) => {
 };
 
 // Crear nueva tarea
-export const postTasks = async ({ title, complete }) => {
+export const postTasks = async ({ title, completed }) => {
     return fetchData(URL, {
         method: "POST",
-        body: JSON.stringify({ title, complete }),
+        body: JSON.stringify({ title, completed }),
         headers: {
             "Content-Type": "application/json",
         },
@@ -40,12 +40,12 @@ export const getAllTasks = async () => {
 };
 
 // Actualizar una tarea
-export const putTask = async (id, { title, complete }) => {
+export const putTask = async (id, title, completed) => {
     return fetchData(URL + `/${id}`, {
         method: "PUT",
         body: JSON.stringify({
             title,
-            complete,
+            completed,
         }),
         headers: {
             "Content-Type": "application/json",
